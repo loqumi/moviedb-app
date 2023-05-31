@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {
-    Stack
-} from "@mui/material";
 import {DataGrid, GridSortModel} from '@mui/x-data-grid';
 import {Movie, MovieDBResponse} from "./types/api";
 import {AppDecorator} from "./theme/AppDecorator";
-import {ThemeToggleButton} from "./theme/ThemeToggleButton";
 import {columns} from "./config/columns";
 import {useLocalStorage} from "usehooks-ts";
+import {Toolbar} from "./components/Toolbar";
 
 function App() {
     return (
@@ -47,7 +44,7 @@ const Content = () => {
                   },
               }}
               slots={{
-                  toolbar: props => <Stack alignItems='center' justifyContent='center'><ThemeToggleButton /></Stack>
+                  toolbar: Toolbar
               }}
           />
       </div>
