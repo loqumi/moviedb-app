@@ -1,21 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {
-    CssBaseline,
-    Rating,
-    createTheme,
-    IconButton,
-    PaletteMode,
-    ThemeProvider,
-    useMediaQuery, Stack
+    Stack
 } from "@mui/material";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { DarkMode, LightMode } from '@mui/icons-material';
-import { useLocalStorage } from 'usehooks-ts';
+import {DataGrid, GridSortModel} from '@mui/x-data-grid';
 import {Movie, MovieDBResponse} from "./types/api";
 import {AppDecorator} from "./theme/AppDecorator";
 import {ThemeToggleButton} from "./theme/ThemeToggleButton";
-import {ImageCell} from "./components/ImageCell";
 import {columns} from "./config/columns";
+import {useLocalStorage} from "usehooks-ts";
 
 function App() {
     return (
@@ -29,6 +21,7 @@ function App() {
 
 const Content = () => {
     const [movies, setMovies] = useState<Movie[]>([])
+    const [sortModel, setSortModel] = useLocalStorage<GridSortModel | undefined>('SortModel', undefined)
 
     useEffect(() => {
         (async () => {
@@ -46,6 +39,8 @@ const Content = () => {
               columns={columns}
               getRowHeight={() => "auto"}
               getEstimatedRowHeight={() => 300}
+              onSortModelChange={setSortModel}
+              sortModel={sortModel}
               initialState={{
                   pagination: {
                       paginationModel: { page: 0, pageSize: 10 },
