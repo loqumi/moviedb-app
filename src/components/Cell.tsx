@@ -18,6 +18,10 @@ export const Cell = (data:  GridRenderCellParams<any, any, any, GridTreeNodeWith
     return <DefaultCell>{data.value}</DefaultCell>
 }
 
+const StyledImg = styled('img')({
+    cursor: 'pointer',
+})
+
 export const ImageCell = ({src}: {src: string}) => {
     const [isOpen, setIsOpen] = useState(false)
     const handleClose = () => setIsOpen(false)
@@ -27,7 +31,7 @@ export const ImageCell = ({src}: {src: string}) => {
         setIsOpen(true)
     }
     return <>
-        <img src={process.env.REACT_APP_API_IMG + src} alt="poster" height={300} onClick={handleClick} />
+        <StyledImg src={process.env.REACT_APP_API_IMG + src} alt="poster" height={300} onClick={handleClick} />
 
         <Modal open={isOpen} onClose={handleClose}>
             <img src={process.env.REACT_APP_API_IMG + src} alt="poster" height={500} />
@@ -41,6 +45,19 @@ export const OriginalIdCell = styled(DefaultCell)(({theme}) => ({
 }))
 
 export const OriginalTitleCell = styled(DefaultCell)({
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: "'Raleway', sans-serif",
 })
+export const OriginalLanguageCell = styled(DefaultCell)({
+    textTransform: "uppercase",
+})
+
+export const OriginalDateCell = styled(DefaultCell)({
+    fontFamily: "'Playfair Display', serif",
+})
+
+export const OriginalVoteCell = styled(DefaultCell)({
+    color: 'red',
+})
+
 

@@ -2,7 +2,15 @@ import {Movie} from "../types/api";
 import {GridColDef} from "@mui/x-data-grid";
 import {Rating} from "@mui/material";
 import React from "react";
-import {Cell, DefaultCell, ImageCell, OriginalIdCell, OriginalTitleCell} from "../components/Cell";
+import {
+    Cell,
+    DefaultCell,
+    ImageCell,
+    OriginalDateCell,
+    OriginalIdCell, OriginalLanguageCell,
+    OriginalTitleCell,
+    OriginalVoteCell
+} from "../components/Cell";
 
 export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
     {
@@ -36,14 +44,17 @@ export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
         type: 'string',
         flex: 1,
         minWidth: 100,
-        renderCell: Cell
+        renderCell: (data) =>
+            <OriginalLanguageCell>
+                {data.value}
+            </OriginalLanguageCell>
     },
     {
         field: 'release_date',
         headerName: 'Release date',
         flex: 1,
         minWidth: 100,
-        renderCell: Cell,
+        renderCell: (data) => <OriginalDateCell>{data.value}</OriginalDateCell>,
     },
     {
         field: 'vote_average',
@@ -60,7 +71,10 @@ export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
         headerName: 'Vote Count',
         flex: 1,
         minWidth: 100,
-        renderCell: Cell,
+        renderCell: (data) =>
+            <OriginalVoteCell>
+                {data.value}
+            </OriginalVoteCell>,
     },
     {
         field: 'popularity',
