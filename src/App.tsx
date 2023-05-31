@@ -28,14 +28,14 @@ const Content = () => {
             setMovies(data.results)
         })()
     }, [])
+
   return (
     <main>
       <div style={{ height: "auto", width: '100%' }}>
           <DataGrid
               rows={movies}
               columns={columns}
-              getRowHeight={() => "auto"}
-              getEstimatedRowHeight={() => 300}
+              getRowHeight={(props) => 'auto'}
               onSortModelChange={setSortModel}
               sortModel={sortModel}
               initialState={{
