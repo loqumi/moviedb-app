@@ -1,42 +1,46 @@
-import {Movie} from "../types/api";
-import {GridColDef} from "@mui/x-data-grid";
-import {Rating} from "@mui/material";
-import React from "react";
+import { Movie } from '../types/api'
+import { GridColDef } from '@mui/x-data-grid'
+import { Rating } from '@mui/material'
+import React from 'react'
 import {
     Cell,
     DefaultCell,
     ImageCell,
     OriginalDateCell,
-    OriginalIdCell, OriginalLanguageCell,
+    OriginalIdCell,
+    OriginalLanguageCell,
     OriginalTitleCell,
-    OriginalVoteCell
-} from "../components/Cell";
+    OriginalVoteCell,
+} from '../components/Cell'
 
-export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
+export const columns: ({ field: keyof Movie } & Omit<GridColDef, 'field'>)[] = [
     {
         field: 'id',
         headerName: 'ID',
         flex: 1,
         minWidth: 100,
-        renderCell: data => <OriginalIdCell>{data.value}</OriginalIdCell>,
+        renderCell: (data) => <OriginalIdCell>{data.value}</OriginalIdCell>,
     },
     {
         field: 'original_title',
         headerName: 'Title',
         flex: 1,
         minWidth: 100,
-        renderCell: data => <OriginalTitleCell>{data.value}</OriginalTitleCell>,
+        renderCell: (data) => (
+            <OriginalTitleCell>{data.value}</OriginalTitleCell>
+        ),
     },
     {
         field: 'poster_path',
         headerName: 'Poster',
-        flex: 2,
-        minWidth: 100,
+        flex: 1,
+        minWidth: 200,
         sortable: false,
-        renderCell: (data) =>
+        renderCell: (data) => (
             <DefaultCell>
                 <ImageCell src={data.value} />
             </DefaultCell>
+        ),
     },
     {
         field: 'original_language',
@@ -44,10 +48,9 @@ export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
         type: 'string',
         flex: 1,
         minWidth: 100,
-        renderCell: (data) =>
-            <OriginalLanguageCell>
-                {data.value}
-            </OriginalLanguageCell>
+        renderCell: (data) => (
+            <OriginalLanguageCell>{data.value}</OriginalLanguageCell>
+        ),
     },
     {
         field: 'release_date',
@@ -61,20 +64,18 @@ export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
         headerName: 'Vote Average',
         flex: 1,
         minWidth: 150,
-        renderCell: (data) =>
+        renderCell: (data) => (
             <DefaultCell>
-                <Rating name="read-only" value={data.value/2} readOnly />
+                <Rating name="read-only" value={data.value / 2} readOnly />
             </DefaultCell>
+        ),
     },
     {
         field: 'vote_count',
         headerName: 'Vote Count',
         flex: 1,
         minWidth: 100,
-        renderCell: (data) =>
-            <OriginalVoteCell>
-                {data.value}
-            </OriginalVoteCell>,
+        renderCell: (data) => <OriginalVoteCell>{data.value}</OriginalVoteCell>,
     },
     {
         field: 'popularity',
@@ -83,4 +84,4 @@ export const columns: ({field: keyof Movie} & Omit<GridColDef, 'field'>)[] = [
         minWidth: 100,
         renderCell: Cell,
     },
-];
+]
