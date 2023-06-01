@@ -5,10 +5,7 @@ import React from 'react'
 
 export function ThemeToggleButton() {
     const darkMode = useMediaQuery('(prefers-color-scheme: dark)')
-    const [mode, setMode] = useLocalStorage<PaletteMode>(
-        'mode',
-        darkMode ? 'dark' : 'light'
-    )
+    const [mode, setMode] = useLocalStorage<PaletteMode>('mode', darkMode ? 'dark' : 'light')
 
     const icon = mode === 'dark' ? <LightMode /> : <DarkMode />
     const handleClick = () => setMode(mode === 'dark' ? 'light' : 'dark')

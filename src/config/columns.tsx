@@ -26,9 +26,7 @@ export const columns: ({ field: keyof Movie } & Omit<GridColDef, 'field'>)[] = [
         headerName: 'Title',
         flex: 1,
         minWidth: 100,
-        renderCell: (data) => (
-            <OriginalTitleCell>{data.value}</OriginalTitleCell>
-        ),
+        renderCell: (data) => <OriginalTitleCell>{data.value}</OriginalTitleCell>,
     },
     {
         field: 'poster_path',
@@ -48,9 +46,7 @@ export const columns: ({ field: keyof Movie } & Omit<GridColDef, 'field'>)[] = [
         type: 'string',
         flex: 1,
         minWidth: 100,
-        renderCell: (data) => (
-            <OriginalLanguageCell>{data.value}</OriginalLanguageCell>
-        ),
+        renderCell: (data) => <OriginalLanguageCell>{data.value}</OriginalLanguageCell>,
     },
     {
         field: 'release_date',

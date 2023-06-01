@@ -1,11 +1,4 @@
-import {
-    IconButton,
-    Modal as MUIModal,
-    ModalProps,
-    Paper,
-    Stack,
-    styled,
-} from '@mui/material'
+import { IconButton, Modal as MUIModal, ModalProps, Paper, Stack, styled } from '@mui/material'
 import React from 'react'
 import { Close } from '@mui/icons-material'
 
@@ -23,10 +16,7 @@ const StyledModal = styled(MUIModal)({
 export const Modal = ({
     children,
     ...props
-}: { children: React.ReactNode; onClose: () => void } & Omit<
-    ModalProps,
-    'children' | 'onClose'
->) => {
+}: { children: React.ReactNode; onClose: () => void } & Omit<ModalProps, 'children' | 'onClose'>) => {
     const handleClick = () => props.onClose()
 
     return (

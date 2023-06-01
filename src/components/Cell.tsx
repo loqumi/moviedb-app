@@ -1,11 +1,5 @@
 import { GridRenderCellParams, GridTreeNodeWithRender } from '@mui/x-data-grid'
-import {
-    Stack,
-    StackProps,
-    styled,
-    Typography,
-    TypographyProps,
-} from '@mui/material'
+import { Stack, StackProps, styled, Typography, TypographyProps } from '@mui/material'
 import React, { useState } from 'react'
 import { Modal } from './Modal'
 
@@ -30,9 +24,7 @@ export const DefaultTextCell = ({ children, ...props }: TypographyProps) => {
     )
 }
 
-export const Cell = (
-    data: GridRenderCellParams<any, any, any, GridTreeNodeWithRender>
-) => {
+export const Cell = (data: GridRenderCellParams<any, any, any, GridTreeNodeWithRender>) => {
     return <DefaultCell>{data.value}</DefaultCell>
 }
 
@@ -48,21 +40,14 @@ export const ImageCell = ({ src }: { src: string }) => {
         event.stopPropagation()
         setIsOpen(true)
     }
+
+    const url = `https://image.tmdb.org/t/p/w500${src}`
     return (
         <>
-            <StyledImg
-                src={process.env.REACT_APP_API_IMG + src}
-                alt="poster"
-                height={300}
-                onClick={handleClick}
-            />
+            <StyledImg src={url} alt="poster" height={300} onClick={handleClick} />
 
             <Modal open={isOpen} onClose={handleClose}>
-                <img
-                    src={process.env.REACT_APP_API_IMG + src}
-                    alt="poster"
-                    height={500}
-                />
+                <img src={url} alt="poster" height={500} />
             </Modal>
         </>
     )
