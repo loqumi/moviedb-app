@@ -1,17 +1,22 @@
 import {GridRenderCellParams, GridTreeNodeWithRender} from "@mui/x-data-grid";
-import {Stack, StackProps, styled} from "@mui/material";
+import {Stack, StackProps, styled, Typography, TypographyProps} from "@mui/material";
 import React, {useState} from "react";
 import {Modal} from "./Modal";
 
 
 const StyledCell = styled(Stack)({
-    minHeight: '99px',
     maxHeight: '300px',
+    minHeight: '100px',
+    width: '100%',
     justifyContent: 'center'
 })
 
 export const DefaultCell = ({children, ...props}: StackProps) => {
     return <StyledCell {...props}>{children}</StyledCell>
+}
+
+export const DefaultTextCell = ({children, ...props}: TypographyProps) => {
+    return <DefaultCell><Typography sx={{textWrap: 'wrap'}} {...props}>{children}</Typography></DefaultCell>
 }
 
 export const Cell = (data:  GridRenderCellParams<any, any, any, GridTreeNodeWithRender>) => {
@@ -44,19 +49,19 @@ export const OriginalIdCell = styled(DefaultCell)(({theme}) => ({
     color: theme.palette.primary.main,
 }))
 
-export const OriginalTitleCell = styled(DefaultCell)({
+export const OriginalTitleCell = styled(DefaultTextCell)({
     fontWeight: 'bold',
     fontFamily: "'Raleway', sans-serif",
 })
-export const OriginalLanguageCell = styled(DefaultCell)({
+export const OriginalLanguageCell = styled(DefaultTextCell)({
     textTransform: "uppercase",
 })
 
-export const OriginalDateCell = styled(DefaultCell)({
+export const OriginalDateCell = styled(DefaultTextCell)({
     fontFamily: "'Playfair Display', serif",
 })
 
-export const OriginalVoteCell = styled(DefaultCell)({
+export const OriginalVoteCell = styled(DefaultTextCell)({
     color: 'red',
 })
 

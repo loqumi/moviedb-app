@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {DataGrid, GridPaginationModel, GridSortModel} from '@mui/x-data-grid';
+import React, {useCallback, useEffect, useState} from 'react';
+import {DataGrid, GridColumnVisibilityModel, GridPaginationModel, GridSortModel} from '@mui/x-data-grid';
 import {Movie, MovieDBResponse} from "./types/api";
 import {AppDecorator} from "./theme/AppDecorator";
 import {columns} from "./config/columns";
@@ -17,9 +17,13 @@ function App() {
 }
 
 const Content = () => {
+    const maxHeight = 300
+    const minHeight = 100
     const [movies, setMovies] = useState<Movie[]>([])
     const [sortModel, setSortModel] = useLocalStorage<GridSortModel | undefined>('SortModel', undefined)
     const [paginationModel, setPaginationModel] = useLocalStorage<GridPaginationModel | undefined>('PaginationModel', {pageSize: 20, page: 0})
+    const [columnVisibilityModel, setColumnVisibilityModel] = useLocalStorage<GridColumnVisibilityModel | undefined>('ColumnVisibilityModel', undefined)
+    const [rowHeight, setRowHeight] = useLocalStorage('RowHeight', maxHeight);
     const url = process.env.REACT_APP_API_URL || ''
     const [rowCount, setRowCount] = useState(0)
     const [page, setPage] = useState(1)
@@ -30,6 +34,9 @@ const Content = () => {
             const data = await fetch(url + `&page=${page}`).then(res => res.json()) as MovieDBResponse
             setMovies(data.results)
             setRowCount(data.total_pages)
+            if (columnVisibilityModel && 'poster_path' in columnVisibilityModel) {
+                setRowHeight(columnVisibilityModel.poster_path ? maxHeight : minHeight)
+            }
         })()
     }, [])
 
@@ -39,25 +46,36 @@ const Content = () => {
         setPaginationModel(model)
     }
 
+    const handleChangeColumnVisible = (model: GridColumnVisibilityModel) => {
+        setRowHeight(model.poster_path ? maxHeight : minHeight)
+        setColumnVisibilityModel(model)
+    }
+
+    const getRowHeight = () => {
+        return rowHeight < maxHeight ? 'auto' : rowHeight
+    }
+
+
   return (
     <main>
-      <div style={{ height: "auto", width: '100%' }}>
           <DataGrid
               rows={movies || []}
               columns={columns}
-              getRowHeight={(props) => 'auto'}
+              rowHeight={rowHeight}
+              getRowHeight={getRowHeight}
               onSortModelChange={setSortModel}
               sortModel={sortModel}
               paginationMode='server'
               rowCount={rowCount}
               onPaginationModelChange={handleChangePage}
               paginationModel={paginationModel}
+              columnVisibilityModel={columnVisibilityModel}
+              onColumnVisibilityModelChange={handleChangeColumnVisible}
               pageSizeOptions={[20]}
               slots={{
                   toolbar: Toolbar
               }}
           />
-      </div>
   </main>
   )
 }
