@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# MovieDB React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React application that utilizes the MovieDB API to display information about movies. It allows users to search for movies, view movie details, and save their favorite movies.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clone the repository to your local machine using the following command:
 
-### `npm start`
+   ```
+   git clone <repository_url>
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Navigate to the project directory:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   ```
+   cd MovieDB-React-App
+   ```
 
-### `npm test`
+3. Install the dependencies by running:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   npm install
+   ```
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In order to use the MovieDB API, you will need to obtain an API key from the [MovieDB website](https://www.themoviedb.org/) by creating an account.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once you have obtained the API key, create a file named `.env.local` in the root of the project directory. Inside the file, add the following line:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+REACT_APP_API_URL="https://api.themoviedb.org/3/movie/popular?api_key=[your_api_key]"
+```
 
-### `npm run eject`
+Replace `your_api_key` with your actual API key.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To start the application, run the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This will start the development server and open the application in your default browser. If the browser doesn't open automatically, you can visit [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Movie Details**: Click on image from the table to view its details.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Dependencies
+
+The main dependencies used in this project are:
+
+- [React](https://reactjs.org/): TypeScript library for building user interfaces.
+- [@mui](https://mui.com/): React UI tools
+- [usehooks-ts](https://usehooks-ts.com/): React hooks library
+
+For a complete list of dependencies, refer to the `package.json` file.
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request on the GitHub repository.
+
+---
+
+Thank you for using the MovieDB React App! If you have any further questions or need assistance, please don't hesitate to reach out. Enjoy exploring movies!
