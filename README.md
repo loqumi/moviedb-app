@@ -26,10 +26,10 @@ This is a React application that utilizes the MovieDB API to display information
 
 In order to use the MovieDB API, you will need to obtain an API key from the [MovieDB website](https://www.themoviedb.org/) by creating an account.
 
-Once you have obtained the API key, create a file named `.env.local` in the root of the project directory. Inside the file, add the following line:
+Once you have obtained the API key, create a file named `.env` in the root of the project directory. Inside the file, add the following line:
 
 ```
-REACT_APP_API_URL="https://api.themoviedb.org/3/movie/popular?api_key=[your_api_key]"
+REACT_APP_API_KEY=[your_api_key]
 ```
 
 Replace `your_api_key` with your actual API key.
